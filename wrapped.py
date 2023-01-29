@@ -1,7 +1,27 @@
 from PIL import Image, ImageDraw, ImageFont
 
-img = Image.open('green.background.png')
-d = ImageDraw.Draw(img)
-fnt = ImageFont.truetype('Pillow/Tests/fonts/FreeMono.ttf', 40)
-d.text((10, 10), "Hello World", fill=(255, 255, 255))
-img.save('pil_text_font.png')
+def wrapped_text(dollar_total, type_donation, charity, month):
+    img = Image.open('dominant_blue.jpg')
+    draw = ImageDraw.Draw(img)
+    fnt = ImageFont.truetype('Arial.ttf', 45)
+    fnt_2 = ImageFont.truetype('Arial.ttf', 35)
+    fnt_3 = ImageFont.truetype('Arial.ttf', 30)
+    fnt_4 = ImageFont.truetype('Arial.ttf', 25)
+
+    draw.text((20, 10), "2023 JustChange Wrapped", font = fnt_2, fill = (0, 111, 100))
+
+    draw.text((20, 375), "Dollars Donated", font = fnt_3, fill = (0, 111, 100))
+    draw.text((20, 425), "$" + str(dollar_total), font = fnt, fill = (0, 111, 100))
+
+    draw.text((20, 500), "Donation Type", font = fnt_3, fill = (0, 111, 100))
+    draw.text((20, 550), str(type_donation), font=fnt_3, fill=(0, 111, 100))
+
+    draw.text((275, 75), "Top Charities", font = fnt_3, fill = (0, 111, 100))
+    for i in range(5):
+        draw.text((275, 125 + i * 40), str(charity[i]), font = fnt_4, fill = (0, 111, 100))
+
+    draw.text((275, 375), "Top Months", font = fnt_3, fill = (0, 111, 100))
+    for k in range(5):
+        draw.text((275, 425 + k * 40), str(month[k]), font = fnt_4, fill = (0, 111, 100))
+
+    img.save('wrapped_finished.png')
